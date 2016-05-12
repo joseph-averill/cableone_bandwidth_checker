@@ -39,13 +39,13 @@ this_day = datetime.today()
 limit = float(soup.find(id="ctl00_plhMain_lblDataguideline").text.replace(" GB", ""))
 used = float(soup.find(id="ctl00_plhMain_lblDataUsed").text.replace(" GB", ""))
 
-days_of_bandwidth = (end_date - start_date).days
+days_of_bandwidth = (end_date - start_date).days + 1
 if days_of_bandwidth != 0:
     bandwidth_per_day = limit / days_of_bandwidth
 else:
     bandwidth_per_day = limit
 
-days_remaining = (end_date - this_day).days
+days_remaining = (end_date - this_day).days + 1
 available_bandwidth = limit - used
 if days_remaining != 0:
     remaining_bandwidth_per_day = available_bandwidth / days_remaining
