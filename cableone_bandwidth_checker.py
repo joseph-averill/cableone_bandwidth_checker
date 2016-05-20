@@ -31,10 +31,10 @@ login_data = {"__VIEWSTATE": VIEWSTATE,
 r = s.post(URL, data=login_data)
 soup = BeautifulSoup(r.content, "html.parser")
 start_date_string = soup.find(id="ctl00_plhMain_lblDataStartTotal")
-start_date = datetime.strptime(start_date_string.text, '%m/%d/%Y')
+start_date = datetime.strptime(start_date_string.text, '%m/%d/%Y').date()
 end_date_string = soup.find(id="ctl00_plhMain_lblDataEndTotal")
-end_date = datetime.strptime(end_date_string.text, '%m/%d/%Y')
-this_day = datetime.today()
+end_date = datetime.strptime(end_date_string.text, '%m/%d/%Y').date()
+this_day = datetime.today().date()
 
 limit = float(soup.find(id="ctl00_plhMain_lblDataguideline").text.replace(" GB", ""))
 used = float(soup.find(id="ctl00_plhMain_lblDataUsed").text.replace(" GB", ""))
